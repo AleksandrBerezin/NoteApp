@@ -3,7 +3,7 @@
 namespace NoteApp
 {
     /// <summary>
-    /// Класс проекта, хранящий список всех заметок
+    /// Класс проекта, хранящий список заметок
     /// </summary>
     public class Project
     {
@@ -21,7 +21,7 @@ namespace NoteApp
 
             set
             {
-                _notes = Notes;
+                _notes = value;
             }
         }
 
