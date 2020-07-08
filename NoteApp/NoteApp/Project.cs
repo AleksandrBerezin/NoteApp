@@ -11,7 +11,8 @@ namespace NoteApp
         /// Список всех заметок
         /// </summary>
         private List<Note> _notes;
-
+        //TODO: xml
+        //TODO: это можно было сделать автосвойством - меньше кода, лучше читаемость
         public List<Note> Notes
         {
             get
