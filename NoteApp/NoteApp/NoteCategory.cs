@@ -1,7 +1,7 @@
 ﻿namespace NoteApp
 {
     /// <summary>
-    /// Категория заметки
+    /// Перечисление <see cref="NoteCategory"/>, содержащее категории заметки>
     /// </summary>
     public enum NoteCategory
     {

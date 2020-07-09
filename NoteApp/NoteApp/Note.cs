@@ -1,19 +1,22 @@
 ﻿using System;
+using Newtonsoft.Json;
 
 namespace NoteApp
 {
     //TODO: не надо перечислять все поля. Если добавятся новые поля и какие-то удалятся, наверняка комментарий не будет исправлен и станет вводить в заблуждение
     /// <summary>
-    /// Класс заметки, хранящий информацию о названии, категории и тексте заметки,
-    /// времени создания и последнего изменения заметки
+    /// Класс <see cref="Note"/>, хранящий информацию о заметке
     /// </summary>
     public class Note : ICloneable
     {
         /// <summary>
         /// Название заметки. Название не должно превышать 50 символов.
         /// </summary>
-        private string _name;
+        private string _name = "Без названия";
         //TODO: xml-комментарии у всех членов класса (исправить здесь и далее)
+        /// <summary>
+        /// Возвращает и задает название заметки
+        /// </summary>
         public string Name
         {
             get
@@ -28,15 +31,7 @@ namespace NoteApp
                     throw new ArgumentException("Название не должно превышать 50 символов.");
                 }
                 //TODO: Не очень хорошее условие, потому что если бы я менял название заметки, я бы сначала стёр старое, а затем ввел новое. Здесь же как только я сотру одно название, мне сразу подставится "Без названия"
-                if (String.IsNullOrEmpty(value))
-                {
-                    _name = "Без названия";
-                }
-                else
-                {
-                    _name = value;
-                }
-
+                _name = value;
                 LastChangeTime = DateTime.Now;
             }
         }
@@ -46,6 +41,9 @@ namespace NoteApp
         /// </summary>
         private NoteCategory _category;
 
+        /// <summary>
+        /// Возвращает и задает категорию заметки
+        /// </summary>
         public NoteCategory Category
         {
             get
@@ -65,6 +63,9 @@ namespace NoteApp
         /// </summary>
         private string _text;
 
+        /// <summary>
+        /// Возвращает и задает текст заметки
+        /// </summary>
         public string Text
         {
             get
@@ -84,6 +85,9 @@ namespace NoteApp
         /// </summary>
         private DateTime _creationTime;
 
+        /// <summary>
+        /// Возвращает и задает время создания заметки
+        /// </summary>
         public DateTime CreationTime
         {
             get
@@ -102,6 +106,10 @@ namespace NoteApp
         /// </summary>
         private DateTime _lastChangeTime;
 
+        
+        /// <summary>
+        /// Возвращает и задает время последнего изменения заметки
+        /// </summary>
         public DateTime LastChangeTime
         {
             get
@@ -115,6 +123,12 @@ namespace NoteApp
             }
         }
 
+        /// <summary>
+        /// Создает экземпляр <see cref="Note"/>
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="category"></param>
+        /// <param name="text"></param>
         public Note(string name, NoteCategory category, string text)
         {
             Name = name;
@@ -125,9 +139,27 @@ namespace NoteApp
         }
 
         /// <summary>
+        /// Создает экземпляр <see cref="Note"/>
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="category"></param>
+        /// <param name="text"></param>
+        /// <param name="creationTime"></param>
+        /// <param name="lastChangeTime"></param>
+        [JsonConstructor]
+        public Note(string name, NoteCategory category, string text, DateTime creationTime,
+            DateTime lastChangeTime)
+        {
+            Name = name;
+            Category = category;
+            Text = text;
+            CreationTime = creationTime;
+            LastChangeTime = lastChangeTime;
+        }
+
+        /// <summary>
         /// Метод для создания копии объекта
         /// </summary>
-        /// <returns></returns>
         public object Clone()
         {
             return this.MemberwiseClone();

@@ -3,7 +3,7 @@
 namespace NoteApp
 {
     /// <summary>
-    /// Класс проекта, хранящий список заметок
+    /// Класс <see cref="Project"/>, хранящий список заметок
     /// </summary>
     public class Project
     {
@@ -13,19 +13,14 @@ namespace NoteApp
         private List<Note> _notes;
         //TODO: xml
         //TODO: это можно было сделать автосвойством - меньше кода, лучше читаемость
-        public List<Note> Notes
-        {
-            get
-            {
-                return _notes;
-            }
+        /// <summary>
+        /// Возвращает и задает список заметок
+        /// </summary>
+        public List<Note> Notes { get; set; }
 
-            set
-            {
-                _notes = value;
-            }
-        }
-
+        /// <summary>
+        /// Создает экземпляр <see cref="Project"/>
+        /// </summary>
         public Project()
         {
             Notes = new List<Note>();

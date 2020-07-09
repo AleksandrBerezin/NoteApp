@@ -7,27 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using NoteApp;
 
 namespace NoteAppUI
 {
-    public partial class MainForm : Form
+    public partial class AboutForm : Form
     {
-        private Project _project;
-
-        public MainForm()
+        public AboutForm()
         {
             InitializeComponent();
-        }
-
-        private void MainForm_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox6_TextChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

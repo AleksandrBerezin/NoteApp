@@ -20,19 +20,27 @@ namespace NoteApp
         /// <summary>
         /// Путь к файлу
         /// </summary>
-        private static readonly string _path = 
-            Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + FileName;
+        public static string DefaultPath { get; set; } =
+            Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) +
+            "\\NoteApp";
 
         //TODO: путь должен передаваться аргументом в метод, чтобы сделать класс более гибким в использовании (например, если в будущем добавить в программу разных пользоватлей, можно будет сохранять заметки разных пользователей в разные файлы)
         //TODO: но в текущей реализации метод должен вызывать с дефолтным путем, который клиентский код будет забирать из открытого свойства этого класса.
         /// <summary>
         /// Метод для сохранения данных в файл
         /// </summary>
-        public static void SaveToFile(Project data)
+        public static void SaveToFile(Project data, string path)
         {
             JsonSerializer serializer = new JsonSerializer();
 
-            using (StreamWriter sw = new StreamWriter(_path))
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+
+            path += "\\" + FileName;
+
+            using (StreamWriter sw = new StreamWriter(path))
             using (JsonWriter writer = new JsonTextWriter(sw))
             {
                 serializer.Serialize(writer, data);
@@ -43,19 +51,21 @@ namespace NoteApp
         /// <summary>
         /// Метод для загрузки данных из файла
         /// </summary>
-        public static Project LoadFromFile()
+        public static Project LoadFromFile(string path)
         {
             NoteApp.Project project = null;
 
             JsonSerializer serializer = new JsonSerializer();
 
-            if (!File.Exists(_path))
+            path += "\\" + FileName;
+
+            if (!File.Exists(path))
             {
                 return new Project();
             }
 
             //TODO: отработать вариант, когда десериализовать не удалось (например, содержание файла повреждено)
-            using (StreamReader sr = new StreamReader(_path))
+            using (StreamReader sr = new StreamReader(path))
             using (JsonReader reader = new JsonTextReader(sr))
             {
                 project = (Project)serializer.Deserialize<Project>(reader);
