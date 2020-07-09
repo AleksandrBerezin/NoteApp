@@ -65,7 +65,6 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 39F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(737, 549);
             this.tableLayoutPanel1.TabIndex = 0;
-            this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
             // 
             // tableLayoutPanel2
             // 
@@ -112,11 +111,13 @@
             // 
             // CategoryComboBox
             // 
+            this.CategoryComboBox.BackColor = System.Drawing.SystemColors.Window;
             this.CategoryComboBox.FormattingEnabled = true;
             this.CategoryComboBox.Location = new System.Drawing.Point(73, 36);
             this.CategoryComboBox.Name = "CategoryComboBox";
             this.CategoryComboBox.Size = new System.Drawing.Size(168, 24);
             this.CategoryComboBox.TabIndex = 0;
+            this.CategoryComboBox.TextChanged += new System.EventHandler(this.CategoryComboBox_TextChanged);
             // 
             // TitleTextBox
             // 
@@ -126,6 +127,7 @@
             this.TitleTextBox.Name = "TitleTextBox";
             this.TitleTextBox.Size = new System.Drawing.Size(658, 22);
             this.TitleTextBox.TabIndex = 1;
+            this.TitleTextBox.TextChanged += new System.EventHandler(this.TitleTextBox_TextChanged);
             // 
             // tableLayoutPanel3
             // 
@@ -157,6 +159,7 @@
             // 
             // CreationDatePicker
             // 
+            this.CreationDatePicker.Enabled = false;
             this.CreationDatePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.CreationDatePicker.Location = new System.Drawing.Point(0, 0);
             this.CreationDatePicker.Margin = new System.Windows.Forms.Padding(0);
@@ -166,6 +169,7 @@
             // 
             // ModifierDatePicker
             // 
+            this.ModifierDatePicker.Enabled = false;
             this.ModifierDatePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.ModifierDatePicker.Location = new System.Drawing.Point(210, 0);
             this.ModifierDatePicker.Margin = new System.Windows.Forms.Padding(0);
@@ -193,6 +197,7 @@
             this.NoteContentTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.NoteContentTextBox.Size = new System.Drawing.Size(731, 402);
             this.NoteContentTextBox.TabIndex = 1;
+            this.NoteContentTextBox.TextChanged += new System.EventHandler(this.NoteContentTextBox_TextChanged);
             // 
             // tableLayoutPanel4
             // 
@@ -219,6 +224,7 @@
             this.CancelButton.TabIndex = 0;
             this.CancelButton.Text = "Cancel";
             this.CancelButton.UseVisualStyleBackColor = true;
+            this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
             // OKButton
             // 
@@ -230,6 +236,7 @@
             this.OKButton.TabIndex = 1;
             this.OKButton.Text = "OK";
             this.OKButton.UseVisualStyleBackColor = true;
+            this.OKButton.Click += new System.EventHandler(this.OKButton_Click);
             // 
             // AddOrEditForm
             // 

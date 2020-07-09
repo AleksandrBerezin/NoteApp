@@ -126,6 +126,15 @@ namespace NoteApp
         /// <summary>
         /// Создает экземпляр <see cref="Note"/>
         /// </summary>
+        public Note()
+        {
+            CreationTime = DateTime.Now;
+            LastChangeTime = DateTime.Now;
+        }
+
+        /// <summary>
+        /// Создает экземпляр <see cref="Note"/>
+        /// </summary>
         /// <param name="name"></param>
         /// <param name="category"></param>
         /// <param name="text"></param>
