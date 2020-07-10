@@ -4,6 +4,11 @@ using NoteApp;
 
 namespace NoteAppUI
 {
+    //TODO: добавить программе иконку
+    //TODO: меню должно делаться не кнопками,а через MenuStrip
+    //TODO: кнопки добавления/редактирования/удаления должны быть плоскими и с пиктограммами
+    //TODO: после запуска программы и выбора заметки в списке программа упала с исключением на проверке даты
+
     public partial class MainForm : Form
     {
         /// <summary>
@@ -25,6 +30,8 @@ namespace NoteAppUI
         /// </summary>
         private void FillCategoryComboBox()
         {
+            //TODO: вместо отдельных добавлений использовать foreach и метод Enum.GetValues()
+            //TODO: кроме перечисления должен быть добавлен еще один вариант All для просмотра всех заметок
             CategoryComboBox.Items.Add(NoteCategory.Documents);
             CategoryComboBox.Items.Add(NoteCategory.Finance);
             CategoryComboBox.Items.Add(NoteCategory.HealthAndSport);
@@ -48,7 +55,7 @@ namespace NoteAppUI
         private void NotesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             var selectedIndex = NotesListBox.SelectedIndex;
-
+            //TODO: лучше инвертировать условие с выходом из метода. Уменьшает вложенность в методе, читаемость лучше
             if (selectedIndex >= 0)
             {
                 NoteTitleTextBox.Text = _project.Notes[selectedIndex].Name;
@@ -62,9 +69,11 @@ namespace NoteAppUI
         private void AddNoteButton_Click(object sender, EventArgs e)
         {
             var inner = new AddOrEditForm();
-            inner.Note = null;
+            inner.Note = null; //TODO: а разве он не null по умолчанию?
             inner.ShowDialog();
 
+            //TODO: правильнее результат метода ShowDialog сохранять в переменную и сравнивать в условии уже с ним
+            //TODO: сравнить просто через ==
             if (!inner.DialogResult.Equals(DialogResult.OK))
             {
                 return;
@@ -90,7 +99,7 @@ namespace NoteAppUI
             var inner = new AddOrEditForm();
             inner.Note = (Note)selectedNote.Clone();
             inner.ShowDialog();
-
+            //TODO: см. выше
             if (!inner.DialogResult.Equals(DialogResult.OK))
             {
                 return;
@@ -103,6 +112,7 @@ namespace NoteAppUI
 
             _project.Notes.Insert(selectedIndex, updatedNote);
             NotesListBox.Items.Insert(selectedIndex, updatedNote.Name);
+            //TODO: сохранение в файл
         }
 
         private void HelpButton_Click(object sender, EventArgs e)
