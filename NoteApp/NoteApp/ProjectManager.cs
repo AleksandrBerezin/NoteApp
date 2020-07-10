@@ -59,10 +59,18 @@ namespace NoteApp
             }
 
             //TODO: отработать вариант, когда десериализовать не удалось (например, содержание файла повреждено)
-            using (StreamReader sr = new StreamReader(path))
-            using (JsonReader reader = new JsonTextReader(sr))
+            try
             {
-                project = (Project)serializer.Deserialize<Project>(reader);
+                using (StreamReader sr = new StreamReader(path))
+                using (JsonReader reader = new JsonTextReader(sr))
+                {
+                    project = (Project)serializer.Deserialize<Project>(reader);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Файл поврежден.");
+                return new Project();
             }
 
             return project;

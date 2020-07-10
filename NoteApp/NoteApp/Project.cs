@@ -12,7 +12,6 @@ namespace NoteApp
         /// </summary>
         private List<Note> _notes;
         
-        //TODO: это можно было сделать автосвойством - меньше кода, лучше читаемость
         /// <summary>
         /// Возвращает и задает список заметок
         /// </summary>

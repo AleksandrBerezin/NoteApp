@@ -1,6 +1,6 @@
 ﻿namespace NoteAppUI
 {
-    partial class AddOrEditForm
+    partial class EditNoteForm
     {
         /// <summary>
         /// Required designer variable.
@@ -37,7 +37,7 @@
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.CreationDatePicker = new System.Windows.Forms.DateTimePicker();
-            this.ModifierDatePicker = new System.Windows.Forms.DateTimePicker();
+            this.ModifiedDatePicker = new System.Windows.Forms.DateTimePicker();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.NoteContentTextBox = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
@@ -57,20 +57,20 @@
             this.tableLayoutPanel1.Controls.Add(this.NoteContentTextBox, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel4, 0, 2);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(10, 3);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(13, 4);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 3;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 83F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 102F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(554, 447);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 39F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(739, 550);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // tableLayoutPanel2
             // 
             this.tableLayoutPanel2.ColumnCount = 2;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 52F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 69F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.Controls.Add(this.textBox4, 0, 2);
             this.tableLayoutPanel2.Controls.Add(this.textBox3, 0, 1);
@@ -79,35 +79,35 @@
             this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel3, 1, 2);
             this.tableLayoutPanel2.Controls.Add(this.textBox2, 0, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(2, 2);
-            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 2);
+            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 3;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(550, 79);
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(733, 98);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // textBox4
             // 
             this.textBox4.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox4.Location = new System.Drawing.Point(4, 59);
-            this.textBox4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textBox4.Location = new System.Drawing.Point(5, 72);
+            this.textBox4.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.textBox4.Name = "textBox4";
             this.textBox4.ReadOnly = true;
-            this.textBox4.Size = new System.Drawing.Size(44, 13);
+            this.textBox4.Size = new System.Drawing.Size(59, 15);
             this.textBox4.TabIndex = 7;
             this.textBox4.Text = "Create:";
             // 
             // textBox3
             // 
             this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox3.Location = new System.Drawing.Point(4, 32);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textBox3.Location = new System.Drawing.Point(5, 39);
+            this.textBox3.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.textBox3.Name = "textBox3";
             this.textBox3.ReadOnly = true;
-            this.textBox3.Size = new System.Drawing.Size(44, 13);
+            this.textBox3.Size = new System.Drawing.Size(59, 15);
             this.textBox3.TabIndex = 6;
             this.textBox3.Text = "Category:";
             // 
@@ -115,49 +115,50 @@
             // 
             this.CategoryComboBox.BackColor = System.Drawing.SystemColors.Window;
             this.CategoryComboBox.FormattingEnabled = true;
-            this.CategoryComboBox.Location = new System.Drawing.Point(54, 29);
-            this.CategoryComboBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CategoryComboBox.Location = new System.Drawing.Point(72, 35);
+            this.CategoryComboBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.CategoryComboBox.Name = "CategoryComboBox";
-            this.CategoryComboBox.Size = new System.Drawing.Size(127, 21);
+            this.CategoryComboBox.Size = new System.Drawing.Size(168, 24);
             this.CategoryComboBox.TabIndex = 0;
             this.CategoryComboBox.TextChanged += new System.EventHandler(this.CategoryComboBox_TextChanged);
             // 
             // TitleTextBox
             // 
+            this.TitleTextBox.BackColor = System.Drawing.SystemColors.Window;
             this.TitleTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TitleTextBox.Location = new System.Drawing.Point(54, 2);
-            this.TitleTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 0, 2);
+            this.TitleTextBox.Location = new System.Drawing.Point(72, 2);
+            this.TitleTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 0, 2);
             this.TitleTextBox.Name = "TitleTextBox";
-            this.TitleTextBox.Size = new System.Drawing.Size(496, 20);
+            this.TitleTextBox.Size = new System.Drawing.Size(661, 22);
             this.TitleTextBox.TabIndex = 1;
             this.TitleTextBox.TextChanged += new System.EventHandler(this.TitleTextBox_TextChanged);
             // 
             // tableLayoutPanel3
             // 
             this.tableLayoutPanel3.ColumnCount = 3;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 98F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 131F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel3.Controls.Add(this.textBox5, 1, 0);
             this.tableLayoutPanel3.Controls.Add(this.CreationDatePicker, 0, 0);
-            this.tableLayoutPanel3.Controls.Add(this.ModifierDatePicker, 2, 0);
+            this.tableLayoutPanel3.Controls.Add(this.ModifiedDatePicker, 2, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(54, 56);
-            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(72, 68);
+            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(494, 23);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(658, 29);
             this.tableLayoutPanel3.TabIndex = 5;
             // 
             // textBox5
             // 
             this.textBox5.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox5.Location = new System.Drawing.Point(108, 3);
-            this.textBox5.Margin = new System.Windows.Forms.Padding(10, 3, 2, 2);
+            this.textBox5.Location = new System.Drawing.Point(144, 4);
+            this.textBox5.Margin = new System.Windows.Forms.Padding(13, 4, 3, 2);
             this.textBox5.Name = "textBox5";
             this.textBox5.ReadOnly = true;
-            this.textBox5.Size = new System.Drawing.Size(44, 13);
+            this.textBox5.Size = new System.Drawing.Size(59, 15);
             this.textBox5.TabIndex = 8;
             this.textBox5.Text = "Modified:";
             // 
@@ -168,39 +169,39 @@
             this.CreationDatePicker.Location = new System.Drawing.Point(0, 0);
             this.CreationDatePicker.Margin = new System.Windows.Forms.Padding(0);
             this.CreationDatePicker.Name = "CreationDatePicker";
-            this.CreationDatePicker.Size = new System.Drawing.Size(95, 20);
+            this.CreationDatePicker.Size = new System.Drawing.Size(125, 22);
             this.CreationDatePicker.TabIndex = 0;
             // 
-            // ModifierDatePicker
+            // ModifiedDatePicker
             // 
-            this.ModifierDatePicker.Enabled = false;
-            this.ModifierDatePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.ModifierDatePicker.Location = new System.Drawing.Point(158, 0);
-            this.ModifierDatePicker.Margin = new System.Windows.Forms.Padding(0);
-            this.ModifierDatePicker.Name = "ModifierDatePicker";
-            this.ModifierDatePicker.Size = new System.Drawing.Size(91, 20);
-            this.ModifierDatePicker.TabIndex = 1;
+            this.ModifiedDatePicker.Enabled = false;
+            this.ModifiedDatePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.ModifiedDatePicker.Location = new System.Drawing.Point(211, 0);
+            this.ModifiedDatePicker.Margin = new System.Windows.Forms.Padding(0);
+            this.ModifiedDatePicker.Name = "ModifiedDatePicker";
+            this.ModifiedDatePicker.Size = new System.Drawing.Size(120, 22);
+            this.ModifiedDatePicker.TabIndex = 1;
             // 
             // textBox2
             // 
             this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox2.Location = new System.Drawing.Point(4, 5);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textBox2.Location = new System.Drawing.Point(5, 6);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(44, 13);
+            this.textBox2.Size = new System.Drawing.Size(59, 15);
             this.textBox2.TabIndex = 2;
             this.textBox2.Text = "Title:";
             // 
             // NoteContentTextBox
             // 
             this.NoteContentTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.NoteContentTextBox.Location = new System.Drawing.Point(2, 85);
-            this.NoteContentTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.NoteContentTextBox.Location = new System.Drawing.Point(3, 104);
+            this.NoteContentTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.NoteContentTextBox.Multiline = true;
             this.NoteContentTextBox.Name = "NoteContentTextBox";
             this.NoteContentTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.NoteContentTextBox.Size = new System.Drawing.Size(550, 328);
+            this.NoteContentTextBox.Size = new System.Drawing.Size(733, 405);
             this.NoteContentTextBox.TabIndex = 1;
             this.NoteContentTextBox.TextChanged += new System.EventHandler(this.NoteContentTextBox_TextChanged);
             // 
@@ -208,26 +209,26 @@
             // 
             this.tableLayoutPanel4.ColumnCount = 2;
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 81F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 108F));
             this.tableLayoutPanel4.Controls.Add(this.CancelButton, 1, 0);
             this.tableLayoutPanel4.Controls.Add(this.OKButton, 0, 0);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(2, 417);
-            this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 513);
+            this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 1;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(550, 28);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(733, 35);
             this.tableLayoutPanel4.TabIndex = 2;
             // 
             // CancelButton
             // 
             this.CancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.CancelButton.Location = new System.Drawing.Point(473, 2);
-            this.CancelButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CancelButton.Location = new System.Drawing.Point(630, 2);
+            this.CancelButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.CancelButton.Name = "CancelButton";
-            this.CancelButton.Size = new System.Drawing.Size(75, 24);
+            this.CancelButton.Size = new System.Drawing.Size(100, 31);
             this.CancelButton.TabIndex = 0;
             this.CancelButton.Text = "Cancel";
             this.CancelButton.UseVisualStyleBackColor = true;
@@ -237,24 +238,24 @@
             // 
             this.OKButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.OKButton.Location = new System.Drawing.Point(392, 2);
-            this.OKButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.OKButton.Location = new System.Drawing.Point(522, 2);
+            this.OKButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.OKButton.Name = "OKButton";
-            this.OKButton.Size = new System.Drawing.Size(75, 24);
+            this.OKButton.Size = new System.Drawing.Size(100, 31);
             this.OKButton.TabIndex = 1;
             this.OKButton.Text = "OK";
             this.OKButton.UseVisualStyleBackColor = true;
             this.OKButton.Click += new System.EventHandler(this.OKButton_Click);
             // 
-            // AddOrEditForm
+            // EditNoteForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(574, 453);
+            this.ClientSize = new System.Drawing.Size(765, 558);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.Name = "AddOrEditForm";
-            this.Padding = new System.Windows.Forms.Padding(10, 3, 10, 3);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Name = "EditNoteForm";
+            this.Padding = new System.Windows.Forms.Padding(13, 4, 13, 4);
             this.ShowIcon = false;
             this.Text = "Add/Edit Note";
             this.tableLayoutPanel1.ResumeLayout(false);
@@ -277,7 +278,7 @@
         private System.Windows.Forms.TextBox TitleTextBox;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.DateTimePicker CreationDatePicker;
-        private System.Windows.Forms.DateTimePicker ModifierDatePicker;
+        private System.Windows.Forms.DateTimePicker ModifiedDatePicker;
         private System.Windows.Forms.TextBox NoteContentTextBox;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.Button CancelButton;

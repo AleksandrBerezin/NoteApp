@@ -1,11 +1,12 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 using NoteApp;
 
 namespace NoteAppUI
 {
     //TODO: название должно быть "РедактируемыйОбъект" + "Form". Перечислять глаголы бессмысленно, особенно если из названия непонятно, что именно добавляется или редактируется
-    public partial class AddOrEditForm : Form
+    public partial class EditNoteForm : Form
     {
         /// <summary>
         /// Заметка
@@ -24,23 +25,16 @@ namespace NoteAppUI
             set
             {
                 _note = value;
-                if (_note != null)
-                {
-                    CategoryComboBox.Text = _note.Category.ToString();
-                    CreationDatePicker.Value = _note.CreationTime;
-                    ModifierDatePicker.Value = _note.LastChangeTime;
-                    NoteContentTextBox.Text = _note.Text;
-                }
-                else
-                {
-                    _note = new Note();
-                }
-
+                
                 TitleTextBox.Text = _note.Name;
+                CategoryComboBox.SelectedItem = _note.Category;
+                CreationDatePicker.Text = _note.CreationTime.ToShortDateString();
+                ModifiedDatePicker.Text = _note.LastChangeTime.ToShortDateString();
+                NoteContentTextBox.Text = _note.Text;
             }
         }
 
-        public AddOrEditForm()
+        public EditNoteForm()
         {
             InitializeComponent();
             FillCategoryComboBox();
@@ -52,35 +46,61 @@ namespace NoteAppUI
         private void FillCategoryComboBox()
         {
             //TODO: см. замечания в главной форме (только здесь добавлять All не надо)
-            CategoryComboBox.Items.Add(NoteCategory.Documents);
-            CategoryComboBox.Items.Add(NoteCategory.Finance);
-            CategoryComboBox.Items.Add(NoteCategory.HealthAndSport);
-            CategoryComboBox.Items.Add(NoteCategory.Home);
-            CategoryComboBox.Items.Add(NoteCategory.People);
-            CategoryComboBox.Items.Add(NoteCategory.Work);
-            CategoryComboBox.Items.Add(NoteCategory.Other);
+            foreach (var category in Enum.GetValues(typeof(NoteCategory)))
+            {
+                CategoryComboBox.Items.Add(category);
+            }
         }
 
         private void TitleTextBox_TextChanged(object sender, EventArgs e)
         {
-            Note.Name = TitleTextBox.Text;
+            try
+            {
+                Note.Name = TitleTextBox.Text;
+                TitleTextBox.BackColor = Color.White;
+                ModifiedDatePicker.Text = _note.LastChangeTime.ToShortDateString();
+            }
+            catch (ArgumentException exception)
+            {
+                TitleTextBox.BackColor = Color.LightCoral;
+            }
         }
 
         private void CategoryComboBox_TextChanged(object sender, EventArgs e)
         {
-            if (CategoryComboBox.SelectedItem != null)
+            try
             {
+                // Если значение не определено в перечислении, то выбросит исключение
+                Enum.IsDefined(typeof(NoteCategory), CategoryComboBox.SelectedItem);
                 Note.Category = (NoteCategory)CategoryComboBox.SelectedItem;
+                CategoryComboBox.BackColor = Color.White;
+
+                ModifiedDatePicker.Text = _note.LastChangeTime.ToShortDateString();
+            }
+            catch (Exception exception)
+            {
+                CategoryComboBox.BackColor = Color.LightCoral;
             }
         }
 
         private void NoteContentTextBox_TextChanged(object sender, EventArgs e)
         {
             Note.Text = NoteContentTextBox.Text;
+            ModifiedDatePicker.Text = _note.LastChangeTime.ToShortDateString();
         }
 
         private void OKButton_Click(object sender, EventArgs e)
         {
+            if (TitleTextBox.BackColor == Color.LightCoral ||
+                CategoryComboBox.BackColor == Color.LightCoral)
+            {
+                MessageBox.Show("Invalid values entered",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return;
+            }
+
             DialogResult = DialogResult.OK;
             this.Close();
         }

@@ -23,6 +23,9 @@ namespace NoteAppUI
             InitializeComponent();
             FillCategoryComboBox();
             FillNoteListBox();
+
+            ExitMenuStrip.ShortcutKeys = Keys.Alt | Keys.F4;
+            AboutMenuStrip.ShortcutKeys = Keys.F1;
         }
 
         /// <summary>
@@ -32,13 +35,11 @@ namespace NoteAppUI
         {
             //TODO: вместо отдельных добавлений использовать foreach и метод Enum.GetValues()
             //TODO: кроме перечисления должен быть добавлен еще один вариант All для просмотра всех заметок
-            CategoryComboBox.Items.Add(NoteCategory.Documents);
-            CategoryComboBox.Items.Add(NoteCategory.Finance);
-            CategoryComboBox.Items.Add(NoteCategory.HealthAndSport);
-            CategoryComboBox.Items.Add(NoteCategory.Home);
-            CategoryComboBox.Items.Add(NoteCategory.People);
-            CategoryComboBox.Items.Add(NoteCategory.Work);
-            CategoryComboBox.Items.Add(NoteCategory.Other);
+            foreach (var category in Enum.GetValues(typeof(NoteCategory)))
+            {
+                CategoryComboBox.Items.Add(category);
+            }
+            CategoryComboBox.Items.Add("All");
         }
 
         /// <summary>
@@ -56,25 +57,30 @@ namespace NoteAppUI
         {
             var selectedIndex = NotesListBox.SelectedIndex;
             //TODO: лучше инвертировать условие с выходом из метода. Уменьшает вложенность в методе, читаемость лучше
-            if (selectedIndex >= 0)
+            if (selectedIndex < 0)
             {
-                NoteTitleTextBox.Text = _project.Notes[selectedIndex].Name;
-                CategoryTextBox.Text = _project.Notes[selectedIndex].Category.ToString();
-                CreatedDatePicker.Value = _project.Notes[selectedIndex].CreationTime;
-                ModifiedDatePicker.Value = _project.Notes[selectedIndex].LastChangeTime;
-                NoteContentTextBox.Text = _project.Notes[selectedIndex].Text;
+                return;
             }
+
+            NoteTitleTextBox.Text = _project.Notes[selectedIndex].Name;
+            CategoryTextBox.Text = _project.Notes[selectedIndex].Category.ToString();
+            CreatedDatePicker.Text = 
+                _project.Notes[selectedIndex].CreationTime.ToShortDateString();
+            ModifiedDatePicker.Text = 
+                _project.Notes[selectedIndex].LastChangeTime.ToShortDateString();
+            NoteContentTextBox.Text = _project.Notes[selectedIndex].Text;
         }
 
         private void AddNoteButton_Click(object sender, EventArgs e)
         {
-            var inner = new AddOrEditForm();
-            inner.Note = null; //TODO: а разве он не null по умолчанию?
-            inner.ShowDialog();
+            var inner = new EditNoteForm();
+            inner.Note = new Note();
+            var result = inner.ShowDialog();
 
-            //TODO: правильнее результат метода ShowDialog сохранять в переменную и сравнивать в условии уже с ним
+            //TODO: правильнее результат метода ShowDialog сохранять в переменную
+            //TODO: и сравнивать в условии уже с ним
             //TODO: сравнить просто через ==
-            if (!inner.DialogResult.Equals(DialogResult.OK))
+            if (result != DialogResult.OK)
             {
                 return;
             }
@@ -96,11 +102,11 @@ namespace NoteAppUI
             var selectedIndex = NotesListBox.SelectedIndex;
             var selectedNote = _project.Notes[selectedIndex];
 
-            var inner = new AddOrEditForm();
+            var inner = new EditNoteForm();
             inner.Note = (Note)selectedNote.Clone();
-            inner.ShowDialog();
+            var result = inner.ShowDialog();
             //TODO: см. выше
-            if (!inner.DialogResult.Equals(DialogResult.OK))
+            if (result != DialogResult.OK)
             {
                 return;
             }
@@ -113,9 +119,10 @@ namespace NoteAppUI
             _project.Notes.Insert(selectedIndex, updatedNote);
             NotesListBox.Items.Insert(selectedIndex, updatedNote.Name);
             //TODO: сохранение в файл
+            ProjectManager.SaveToFile(_project, ProjectManager.DefaultPath);
         }
 
-        private void HelpButton_Click(object sender, EventArgs e)
+        private void AboutButton_Click(object sender, EventArgs e)
         {
             var inner = new AboutForm();
             inner.ShowDialog();
@@ -148,6 +155,12 @@ namespace NoteAppUI
 
                 ProjectManager.SaveToFile(_project, ProjectManager.DefaultPath);
             }
+        }
+
+        private void ExitMenuStrip_Click(object sender, EventArgs e)
+        {
+            ProjectManager.SaveToFile(_project, ProjectManager.DefaultPath);
+            this.Close();
         }
     }
 }
