@@ -172,5 +172,25 @@ namespace NoteApp
         {
             return this.MemberwiseClone();
         }
+
+        /// <summary>
+        /// Метод для сравнения значений двух объектов
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public override bool Equals(object obj)
+        {
+            var note = (Note) obj;
+
+            if (Name == note.Name && Category == note.Category && Text == note.Text &&
+                CreationTime == note.CreationTime && LastChangeTime == note.LastChangeTime)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

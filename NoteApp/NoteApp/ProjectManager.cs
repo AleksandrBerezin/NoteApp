@@ -69,8 +69,8 @@ namespace NoteApp
             }
             catch (Exception e)
             {
-                Console.WriteLine("Файл поврежден.");
-                return new Project();
+                throw new JsonSerializationException("Ошибка при десериализации," + 
+                    " файл поврежден");
             }
 
             return project;
