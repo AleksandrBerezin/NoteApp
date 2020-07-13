@@ -5,7 +5,6 @@ using NoteApp;
 
 namespace NoteAppUI
 {
-    //TODO: название должно быть "РедактируемыйОбъект" + "Form". Перечислять глаголы бессмысленно, особенно если из названия непонятно, что именно добавляется или редактируется
     public partial class EditNoteForm : Form
     {
         /// <summary>
@@ -45,7 +44,6 @@ namespace NoteAppUI
         /// </summary>
         private void FillCategoryComboBox()
         {
-            //TODO: см. замечания в главной форме (только здесь добавлять All не надо)
             foreach (var category in Enum.GetValues(typeof(NoteCategory)))
             {
                 CategoryComboBox.Items.Add(category);

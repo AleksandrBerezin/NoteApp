@@ -4,11 +4,6 @@ using NoteApp;
 
 namespace NoteAppUI
 {
-    //TODO: добавить программе иконку
-    //TODO: меню должно делаться не кнопками,а через MenuStrip
-    //TODO: кнопки добавления/редактирования/удаления должны быть плоскими и с пиктограммами
-    //TODO: после запуска программы и выбора заметки в списке программа упала с исключением на проверке даты
-
     public partial class MainForm : Form
     {
         /// <summary>
@@ -33,8 +28,6 @@ namespace NoteAppUI
         /// </summary>
         private void FillCategoryComboBox()
         {
-            //TODO: вместо отдельных добавлений использовать foreach и метод Enum.GetValues()
-            //TODO: кроме перечисления должен быть добавлен еще один вариант All для просмотра всех заметок
             foreach (var category in Enum.GetValues(typeof(NoteCategory)))
             {
                 CategoryComboBox.Items.Add(category);
@@ -56,7 +49,6 @@ namespace NoteAppUI
         private void NotesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             var selectedIndex = NotesListBox.SelectedIndex;
-            //TODO: лучше инвертировать условие с выходом из метода. Уменьшает вложенность в методе, читаемость лучше
             if (selectedIndex < 0)
             {
                 return;
@@ -76,10 +68,6 @@ namespace NoteAppUI
             var inner = new EditNoteForm();
             inner.Note = new Note();
             var result = inner.ShowDialog();
-
-            //TODO: правильнее результат метода ShowDialog сохранять в переменную
-            //TODO: и сравнивать в условии уже с ним
-            //TODO: сравнить просто через ==
             if (result != DialogResult.OK)
             {
                 return;
@@ -118,7 +106,6 @@ namespace NoteAppUI
 
             _project.Notes.Insert(selectedIndex, updatedNote);
             NotesListBox.Items.Insert(selectedIndex, updatedNote.Name);
-            //TODO: сохранение в файл
             ProjectManager.SaveToFile(_project, ProjectManager.DefaultPath);
         }
 
