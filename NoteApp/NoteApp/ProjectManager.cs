@@ -58,7 +58,6 @@ namespace NoteApp
                 return new Project();
             }
 
-            //TODO: отработать вариант, когда десериализовать не удалось (например, содержание файла повреждено)
             try
             {
                 using (StreamReader sr = new StreamReader(path))
@@ -69,6 +68,7 @@ namespace NoteApp
             }
             catch (Exception e)
             {
+                //TODO: какая еще консоль? Убрать любое использование консоли в бизнес-логике
                 Console.WriteLine("Файл поврежден.");
                 return new Project();
             }
