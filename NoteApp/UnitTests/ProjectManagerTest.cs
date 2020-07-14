@@ -36,6 +36,8 @@ namespace NoteApp.UnitTests
                     new DateTime(), new DateTime()),
             };
 
+            project.CurrentNote = project.Notes[0];
+
             return project;
         }
 

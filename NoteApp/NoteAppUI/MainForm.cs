@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using NoteApp;
 
@@ -11,6 +12,11 @@ namespace NoteAppUI
         /// </summary>
         private Project _project;
 
+        /// <summary>
+        /// Сортированный список заметок
+        /// </summary>
+        private List<Note> sortedList;
+
         public MainForm()
         {
             _project = ProjectManager.LoadFromFile(ProjectManager.DefaultPath);
@@ -19,8 +25,15 @@ namespace NoteAppUI
             FillCategoryComboBox();
             FillNoteListBox();
 
+            if (_project.CurrentNote != null)
+            {
+                var currentNoteIndex = _project.Notes.IndexOf(_project.CurrentNote);
+                NotesListBox.SelectedItem = NotesListBox.Items[currentNoteIndex];
+            }
+
             ExitMenuStrip.ShortcutKeys = Keys.Alt | Keys.F4;
             AboutMenuStrip.ShortcutKeys = Keys.F1;
+            RemoveNoteStrip.ShortcutKeys = Keys.Delete;
         }
 
         /// <summary>
@@ -40,7 +53,11 @@ namespace NoteAppUI
         /// </summary>
         private void FillNoteListBox()
         {
-            foreach (var note in _project.Notes)
+            NotesListBox.Items.Clear();
+            sortedList = _project.Sort();
+            _project.Notes = sortedList;
+
+            foreach (var note in sortedList)
             {
                 NotesListBox.Items.Add(note.Name);
             }
@@ -54,13 +71,16 @@ namespace NoteAppUI
                 return;
             }
 
-            NoteTitleTextBox.Text = _project.Notes[selectedIndex].Name;
-            CategoryTextBox.Text = _project.Notes[selectedIndex].Category.ToString();
-            CreatedDatePicker.Text = 
-                _project.Notes[selectedIndex].CreationTime.ToShortDateString();
-            ModifiedDatePicker.Text = 
-                _project.Notes[selectedIndex].LastChangeTime.ToShortDateString();
-            NoteContentTextBox.Text = _project.Notes[selectedIndex].Text;
+            var realIndexInProject = _project.Notes.IndexOf(sortedList[selectedIndex]);
+            _project.CurrentNote = _project.Notes[realIndexInProject];
+
+            NoteTitleTextBox.Text = sortedList[selectedIndex].Name;
+            CategoryTextBox.Text = sortedList[selectedIndex].Category.ToString();
+            CreatedDatePicker.Text =
+                sortedList[selectedIndex].CreationTime.ToShortDateString();
+            ModifiedDatePicker.Text =
+                sortedList[selectedIndex].LastChangeTime.ToShortDateString();
+            NoteContentTextBox.Text = sortedList[selectedIndex].Text;
         }
 
         private void AddNoteButton_Click(object sender, EventArgs e)
@@ -75,7 +95,10 @@ namespace NoteAppUI
 
             var newNote = inner.Note;
             _project.Notes.Add(newNote);
-            NotesListBox.Items.Add(newNote.Name);
+            FillNoteListBox();
+
+            var currentNoteIndex = _project.Notes.IndexOf(newNote);
+            NotesListBox.SelectedItem = NotesListBox.Items[currentNoteIndex];
 
             ProjectManager.SaveToFile(_project, ProjectManager.DefaultPath);
         }
@@ -88,7 +111,8 @@ namespace NoteAppUI
             }
 
             var selectedIndex = NotesListBox.SelectedIndex;
-            var selectedNote = _project.Notes[selectedIndex];
+            var selectedNote = sortedList[selectedIndex];
+            var realIndexInProject = _project.Notes.IndexOf(selectedNote);
 
             var inner = new EditNoteForm();
             inner.Note = (Note)selectedNote.Clone();
@@ -100,11 +124,13 @@ namespace NoteAppUI
 
             var updatedNote = inner.Note;
 
-            NotesListBox.Items.RemoveAt(selectedIndex);
-            _project.Notes.RemoveAt(selectedIndex);
+            _project.Notes.RemoveAt(realIndexInProject);
+            _project.Notes.Insert(realIndexInProject, updatedNote);
+            FillNoteListBox();
 
-            _project.Notes.Insert(selectedIndex, updatedNote);
-            NotesListBox.Items.Insert(selectedIndex, updatedNote.Name);
+            var currentNoteIndex = _project.Notes.IndexOf(updatedNote);
+            NotesListBox.SelectedItem = NotesListBox.Items[currentNoteIndex];
+
             ProjectManager.SaveToFile(_project, ProjectManager.DefaultPath);
         }
 
@@ -136,8 +162,18 @@ namespace NoteAppUI
             if (result == DialogResult.OK)
             {
                 var selectedIndex = NotesListBox.SelectedIndex;
-                NotesListBox.Items.RemoveAt(selectedIndex);
-                _project.Notes.RemoveAt(selectedIndex);
+                var selectedNote = sortedList[selectedIndex];
+                var realIndexInProject = _project.Notes.IndexOf(selectedNote);
+
+                _project.Notes.RemoveAt(realIndexInProject);
+                FillNoteListBox();
+                _project.CurrentNote = null;
+
+                NoteTitleTextBox.Clear();
+                CategoryTextBox.Clear();
+                CreatedDatePicker.Text = DateTime.Now.ToString();
+                ModifiedDatePicker.Text = DateTime.Now.ToString();
+                NoteContentTextBox.Clear();
 
                 ProjectManager.SaveToFile(_project, ProjectManager.DefaultPath);
             }
@@ -147,6 +183,25 @@ namespace NoteAppUI
         {
             ProjectManager.SaveToFile(_project, ProjectManager.DefaultPath);
             this.Close();
+        }
+
+        private void CategoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (CategoryComboBox.SelectedItem == "All")
+            {
+                sortedList = _project.Notes;
+            }
+            else
+            {
+                sortedList = _project.Sort((NoteCategory)CategoryComboBox.SelectedItem);
+            }
+
+            NotesListBox.Items.Clear();
+            
+            foreach (var note in sortedList)
+            {
+                NotesListBox.Items.Add(note.Name);
+            }
         }
     }
 }
