@@ -4,7 +4,7 @@ using System.IO;
 using System.Reflection;
 using Newtonsoft.Json;
 using NUnit.Framework;
-
+//TODO: тестирование с эталонными файлами сделано не так, как описано в документе!
 namespace NoteApp.UnitTests
 {
     [TestFixture]
@@ -13,7 +13,7 @@ namespace NoteApp.UnitTests
         [Test(Description = "Позитивный тест геттера DefaultPath")]
         public void TestDefaultPathGet_CorrectValue()
         {
-            var expected =
+            var expected = //TODO: зачем каждый раз указывать эту строку? Её можно один раз задать в закрытом поле и везде вызывать, без дублирования?
                 Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\NoteApp";
             ProjectManager.DefaultPath = expected;
             var actual = ProjectManager.DefaultPath;
@@ -24,7 +24,7 @@ namespace NoteApp.UnitTests
         [Test(Description = "Позитивный тест сеттера DefaultPath")]
         public void TestDefaultPathSet_CorrectValue()
         {
-            var expected =
+            var expected = //TODO: см. выше
                 Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\NoteApp";
             ProjectManager.DefaultPath = expected;
             var actual = ProjectManager.DefaultPath;
@@ -49,18 +49,19 @@ namespace NoteApp.UnitTests
             };
 
             var location = Assembly.GetExecutingAssembly().Location;
+            //TODO: переход на две папки выше будет падать при других конфигурациях сборки - об этом написано в документе. Переделать
             location = Path.GetFullPath(location + "\\..\\..\\NoteApp.notes");
 
             if (File.Exists(location))
             {
                 File.Delete(location);
             }
-
+            //TODO: выход за папку bin проекта - начинаем создавать левые файлы по всему решению. Переделать
             ProjectManager.SaveToFile(project, Path.GetFullPath(location + "\\.."));
             Assert.IsFalse(!File.Exists(location), "Файл для сохранения данных не был создан");
 
             var expectedFileAsText = File.ReadAllText(location);
-            var testDataLocation =
+            var testDataLocation = //TODO: см. выше
                 Path.GetFullPath(location + "\\..\\..\\TestData\\NoteApp.notes");
             var actualFileAsText = File.ReadAllText(testDataLocation);
 
@@ -71,6 +72,7 @@ namespace NoteApp.UnitTests
         [Test(Description = "Позитивный тест метода загрузки данных из файла")]
         public void TestLoadFromFile_CorrectValue()
         {
+            //TODO: дублируется код по созданию проекта - вынести в общий метод или поле
             var expectedProject = new Project();
             expectedProject.Notes = new List<Note>()
             {
@@ -85,10 +87,10 @@ namespace NoteApp.UnitTests
             };
 
             var location = Assembly.GetExecutingAssembly().Location;
-            var testDataLocation =
+            var testDataLocation = //TODO: см. выше
                 Path.GetFullPath(location + "\\..\\..\\..\\TestData");
             var actualProject = ProjectManager.LoadFromFile(testDataLocation);
-
+            
             CollectionAssert.AreEqual(expectedProject.Notes, actualProject.Notes,
                 "Метод LoadFromFile загружает данные неверно");
         }
@@ -107,6 +109,7 @@ namespace NoteApp.UnitTests
         [Test(Description = "Тест метода загрузки данных из поврежденного файла")]
         public void TestLoadFromFile_CorruptedFile()
         {
+            //TODO: зачем здесь создавать проект? тест должен проверить возникновение исключения при загрузке эталонного файла
             var project = new Project();
             project.Notes = new List<Note>()
             {
@@ -119,7 +122,7 @@ namespace NoteApp.UnitTests
                 new Note("Заметка 4", NoteCategory.Home, "Текст4",
                     new DateTime(), new DateTime()),
             };
-
+            //TODO: см. выше
             var location = Assembly.GetExecutingAssembly().Location;
             location = Path.GetFullPath(location + "\\..\\..\\NoteApp.notes");
 
@@ -127,14 +130,16 @@ namespace NoteApp.UnitTests
             {
                 File.Delete(location);
             }
-
+            //TODO: см. выше
+            //TODO: в тестировании загрузки файла не должно вызываться сохранение. Вместо этого работа только с эталонными файлами
+            //TODO: зачем вообще нужно программно создавать поврежденный файл? Юнит-тесты должны быть максимально простыми и содержать только тот код, который нужен для вызова тестируемого метода и его проверки. Любые дополнительные действия в случае падения юнит-теста усложняют поиск причин ошибки
             ProjectManager.SaveToFile(project, Path.GetFullPath(location + "\\.."));
             var corruptedText = File.ReadAllText(location);
             corruptedText = corruptedText.Substring(100, corruptedText.Length - 150);
             File.WriteAllText(location, corruptedText);
 
             Project actualProject;
-
+            //TODO: см. выше
             Assert.Throws<JsonSerializationException>(
                 () => { actualProject = ProjectManager.LoadFromFile(location + "\\.."); },
                     "Должно возникать исключение, если файл поврежден");

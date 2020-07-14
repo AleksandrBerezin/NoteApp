@@ -93,7 +93,6 @@ namespace NoteAppUI
             var inner = new EditNoteForm();
             inner.Note = (Note)selectedNote.Clone();
             var result = inner.ShowDialog();
-            //TODO: см. выше
             if (result != DialogResult.OK)
             {
                 return;

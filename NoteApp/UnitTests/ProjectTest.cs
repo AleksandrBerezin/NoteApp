@@ -28,6 +28,7 @@ namespace NoteApp.UnitTests
         [Test(Description = "Позитивный тест сеттера Notes")]
         public void TestNotesSet_CorrectValue()
         {
+            //TODO: дублирование создания списка - вынести в метод или поле
             var expected = new List<Note>()
             {
                 new Note("Заметка 1", NoteCategory.Home, "Текст 1"),
