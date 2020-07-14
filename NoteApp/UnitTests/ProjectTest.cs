@@ -6,17 +6,25 @@ namespace NoteApp.UnitTests
     [TestFixture]
     public class ProjectTest
     {
-        [Test(Description = "Позитивный тест геттера Notes")]
-        public void TestNotesGet_CorrectValue()
+        /// <summary>
+        /// Метод для создания списка заметок на 4 элемента
+        /// </summary>
+        /// <returns></returns>
+        private List<Note> GetExampleList()
         {
-            var expected = new List<Note>()
+            return new List<Note>()
             {
                 new Note("Заметка 1", NoteCategory.Home, "Текст 1"),
                 new Note("Заметка 2", NoteCategory.Work, "Текст 2"),
                 new Note("Заметка 3", NoteCategory.Documents, "Текст 3"),
                 new Note("Заметка 4", NoteCategory.Other, "Текст 4")
             };
+        }
 
+        [Test(Description = "Позитивный тест геттера Notes")]
+        public void TestNotesGet_CorrectValue()
+        {
+            var expected = GetExampleList();
             var project = new Project();
             project.Notes = expected;
             var actual = project.Notes;
@@ -29,14 +37,7 @@ namespace NoteApp.UnitTests
         public void TestNotesSet_CorrectValue()
         {
             //TODO: дублирование создания списка - вынести в метод или поле
-            var expected = new List<Note>()
-            {
-                new Note("Заметка 1", NoteCategory.Home, "Текст 1"),
-                new Note("Заметка 2", NoteCategory.Work, "Текст 2"),
-                new Note("Заметка 3", NoteCategory.Documents, "Текст 3"),
-                new Note("Заметка 4", NoteCategory.Other, "Текст 4")
-            };
-
+            var expected = GetExampleList();
             var project = new Project();
             project.Notes = expected;
             var actual = project.Notes;

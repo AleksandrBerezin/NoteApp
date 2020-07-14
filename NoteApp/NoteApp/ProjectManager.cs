@@ -19,7 +19,7 @@ namespace NoteApp
         /// </summary>
         public static string DefaultPath { get; set; } =
             Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) +
-            "\\NoteApp";
+            "\\NoteApp\\NoteApp.notes";
 
         /// <summary>
         /// Метод для сохранения данных в файл
@@ -28,12 +28,10 @@ namespace NoteApp
         {
             JsonSerializer serializer = new JsonSerializer();
 
-            if (!Directory.Exists(path))
+            if (!Directory.Exists(path + "\\.."))
             {
-                Directory.CreateDirectory(path);
+                Directory.CreateDirectory(path + "\\..");
             }
-
-            path += "\\" + FileName;
 
             using (StreamWriter sw = new StreamWriter(path))
             using (JsonWriter writer = new JsonTextWriter(sw))
@@ -50,8 +48,6 @@ namespace NoteApp
             NoteApp.Project project = null;
 
             JsonSerializer serializer = new JsonSerializer();
-
-            path += "\\" + FileName;
 
             if (!File.Exists(path))
             {
@@ -71,8 +67,7 @@ namespace NoteApp
             {
                 //TODO: Зачем выбрасывание исключения? Во-первых, в программе ты его нигде не ловишь.
                 //Во-вторых, эту ситуацию можно обработать здесь - просто вернуть пустой проект, как в случае отсутствия файла
-                throw new JsonSerializationException("Ошибка при десериализации," + 
-                    " файл поврежден");
+                return new Project();
             }
 
             return project;
