@@ -120,8 +120,8 @@
             // ExitMenuStrip
             // 
             this.ExitMenuStrip.Name = "ExitMenuStrip";
-            this.ExitMenuStrip.Size = new System.Drawing.Size(182, 26);
-            this.ExitMenuStrip.Text = "Exit (Alt + F4)";
+            this.ExitMenuStrip.Size = new System.Drawing.Size(224, 26);
+            this.ExitMenuStrip.Text = "Exit";
             this.ExitMenuStrip.Click += new System.EventHandler(this.ExitMenuStrip_Click);
             // 
             // toolStripMenuItem3
@@ -166,8 +166,8 @@
             // AboutMenuStrip
             // 
             this.AboutMenuStrip.Name = "AboutMenuStrip";
-            this.AboutMenuStrip.Size = new System.Drawing.Size(162, 26);
-            this.AboutMenuStrip.Text = "About (F1)";
+            this.AboutMenuStrip.Size = new System.Drawing.Size(224, 26);
+            this.AboutMenuStrip.Text = "About";
             this.AboutMenuStrip.Click += new System.EventHandler(this.AboutButton_Click);
             // 
             // splitContainer1
