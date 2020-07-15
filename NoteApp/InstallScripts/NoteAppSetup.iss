@@ -9,7 +9,7 @@
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application. Do not use the same AppId value in installers for other applications.
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
-AppId={{19649B42-50CE-43AC-9554-629F77BAB7CB}
+AppId={{19649B42-50CE-43AC-9554-629F77BAB7CB} 
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
 ;AppVerName={#MyAppName} {#MyAppVersion}
@@ -30,6 +30,7 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
+;TODO: неправильно! Если компиляция будет под другой конфигурацией, то установщик не соберется. Сделать правильную работу с путями
 Source: "..\NoteAppUI\bin\Release\NoteAppUI.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\NoteAppUI\bin\Release\NoteApp.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\NoteAppUI\bin\Release\Newtonsoft.Json.dll"; DestDir: "{app}"; Flags: ignoreversion

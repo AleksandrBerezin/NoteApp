@@ -60,7 +60,6 @@ namespace NoteApp.UnitTests
         [Test(Description = "Позитивный тест сеттера Notes")]
         public void TestNotesSet_CorrectValue()
         {
-            //TODO: дублирование создания списка - вынести в метод или поле
             var expected = GetExampleList();
             var project = new Project();
             project.Notes = expected;
@@ -80,7 +79,7 @@ namespace NoteApp.UnitTests
         }
 
         [Test(Description = "Позитивный тест сортировки списка по дате изменения")]
-        public void TestSort_CorrectValue()
+        public void TestSort_CorrectValue() //TODO: переименовать тесты после переименования методов сортировки
         {
             var project = new Project();
             var expectedList = new List<Note>()
