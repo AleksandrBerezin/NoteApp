@@ -79,7 +79,7 @@ namespace NoteApp.UnitTests
         }
 
         [Test(Description = "Позитивный тест сортировки списка по дате изменения")]
-        public void TestSort_CorrectValue() //TODO: переименовать тесты после переименования методов сортировки
+        public void TestLashChangeTimeSort_CorrectValue() //TODO: переименовать тесты после переименования методов сортировки
         {
             var project = new Project();
             var expectedList = new List<Note>()
@@ -101,7 +101,7 @@ namespace NoteApp.UnitTests
             var actualList = GetExampleListWithDate();
 
             project.Notes = actualList;
-            actualList = project.Sort();
+            actualList = project.LastChangeTimeSort();
 
             Assert.AreEqual(expectedList, actualList,
                 "Список должен сортироваться по дате изменения");
@@ -109,7 +109,7 @@ namespace NoteApp.UnitTests
 
         [Test(Description = "Позитивный тест сортировки списка по дате изменения" + 
                             " при определенной категории")]
-        public void TestSortWithCategory_CorrectValue()
+        public void TestLastChangeTimeSortWithCategory_CorrectValue()
         {
             var project = new Project();
             var expectedList = new List<Note>()
@@ -125,7 +125,7 @@ namespace NoteApp.UnitTests
             var actualList = GetExampleListWithDate();
 
             project.Notes = actualList;
-            actualList = project.Sort(NoteCategory.Work);
+            actualList = project.LastChangeTimeSortWithCategory(NoteCategory.Work);
 
             Assert.AreEqual(expectedList, actualList,
                 "Список должен сортироваться по дате изменения, " +
@@ -135,17 +135,17 @@ namespace NoteApp.UnitTests
         [Test(Description = "Позитивный тест сортировки списка по дате изменения " +
                             "при определенной категории, при отсутствии элементов " +
                             "нужной категории")]
-        public void TestSortWithCategory_NoRightCategory()
+        public void TestLastChangeTimeSortWithCategory_NoRightCategory()
         {
             var project = new Project();
             var expectedList = new List<Note>();
             var actualList = GetExampleListWithDate();
 
             project.Notes = actualList;
-            actualList = project.Sort(NoteCategory.HealthAndSport);
+            actualList = project.LastChangeTimeSortWithCategory(NoteCategory.HealthAndSport);
 
             Assert.AreEqual(expectedList, actualList,
-                "Метод Sort должен вернуть пустой список " +
+                "Метод LastChangeTimeSort должен вернуть пустой список " +
                 "при отсутствии элементов нужной категории");
         }
 

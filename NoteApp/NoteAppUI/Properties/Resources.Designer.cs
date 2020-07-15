@@ -63,9 +63,9 @@ namespace NoteAppUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap AddIcon {
+        internal static System.Drawing.Bitmap AddImage {
             get {
-                object obj = ResourceManager.GetObject("AddIcon", resourceCulture);
+                object obj = ResourceManager.GetObject("AddImage", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,9 +73,9 @@ namespace NoteAppUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap EditIcon {
+        internal static System.Drawing.Bitmap EditImage {
             get {
-                object obj = ResourceManager.GetObject("EditIcon", resourceCulture);
+                object obj = ResourceManager.GetObject("EditImage", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -83,9 +83,9 @@ namespace NoteAppUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap RemoveIcon {
+        internal static System.Drawing.Bitmap RemoveImage {
             get {
-                object obj = ResourceManager.GetObject("RemoveIcon", resourceCulture);
+                object obj = ResourceManager.GetObject("RemoveImage", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

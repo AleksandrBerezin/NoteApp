@@ -31,10 +31,10 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 
 [Files]
 ;TODO: неправильно! Если компиляция будет под другой конфигурацией, то установщик не соберется. Сделать правильную работу с путями
-Source: "..\NoteAppUI\bin\Release\NoteAppUI.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\NoteAppUI\bin\Release\NoteApp.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\NoteAppUI\bin\Release\Newtonsoft.Json.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\NoteAppUI\Resources\NoteIcon.ico"; DestDir: "{app}"; Flags: ignoreversion
+Source: "NoteAppUI.exe" ; DestDir: "{app}"; Flags: ignoreversion
+Source: "NoteApp.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Newtonsoft.Json.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "NoteIcon.ico"; DestDir: "{app}"; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]

@@ -36,6 +36,9 @@
     <ApplicationIcon>NoteIcon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -49,11 +52,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EditNoteForm.cs">
+    <Compile Include="NoteForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="EditNoteForm.Designer.cs">
-      <DependentUpon>EditNoteForm.cs</DependentUpon>
+    <Compile Include="NoteForm.Designer.cs">
+      <DependentUpon>NoteForm.cs</DependentUpon>
     </Compile>
     <Compile Include="AboutForm.cs">
       <SubType>Form</SubType>
@@ -72,22 +75,18 @@
     <EmbeddedResource Include="AboutForm.resx">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EditNoteForm.resx">
-      <DependentUpon>EditNoteForm.cs</DependentUpon>
+    <EmbeddedResource Include="NoteForm.resx">
+      <DependentUpon>NoteForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
+    <None Include="packages.config" />
     <None Include="Properties\DataSources\NoteApp.Note.datasource" />
     <None Include="Properties\DataSources\NoteApp.Project.datasource" />
     <None Include="Properties\DataSources\NoteApp.ProjectManager.datasource" />
@@ -95,6 +94,11 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -111,17 +115,17 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\EditIcon.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\AddIcon.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\RemoveIcon.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="NoteIcon.ico" />
+    <None Include="Resources\RemoveImage.png" />
+    <None Include="Resources\EditImage.png" />
+    <None Include="Resources\AddImage.png" />
     <Content Include="Resources\NoteIcon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>del $(SolutionDir)Installer\InstallScripts\*exe
+del $(SolutionDir)Installer\InstallScripts\*dll
+xcopy $(ProjectDir)$(OutDir)*.exe $(SolutionDir)Installer\InstallScripts
+xcopy $(ProjectDir)$(OutDir)*.dll $(SolutionDir)Installer\InstallScripts</PostBuildEvent>
+  </PropertyGroup>
 </Project>

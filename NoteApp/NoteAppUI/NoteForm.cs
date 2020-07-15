@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using Newtonsoft.Json;
 using NoteApp;
 
 namespace NoteAppUI
 {
     //TODO: кнопка Cancel смещена относительно правого края - не выровнена относительно текстовых полей выше
     //TODO: просто NoteForm. Когда я в комментарии писал "редактируемый_объект" + Form, слово Edit не подразумевалось в названии
-    public partial class EditNoteForm : Form
+    public partial class NoteForm : Form
     {
         /// <summary>
         /// Заметка
@@ -35,7 +36,7 @@ namespace NoteAppUI
             }
         }
 
-        public EditNoteForm()
+        public NoteForm()
         {
             InitializeComponent();
             FillCategoryComboBox();
@@ -77,7 +78,7 @@ namespace NoteAppUI
 
                 ModifiedDatePicker.Text = _note.LastChangeTime.ToShortDateString();
             }
-            catch (Exception exception) //TODO: ловить исключения базового типа плохо. Здесь и в других местах конкретизируй тип ожидаемого исключения
+            catch (JsonSerializationException exception) //TODO: ловить исключения базового типа плохо. Здесь и в других местах конкретизируй тип ожидаемого исключения
             {
                 CategoryComboBox.BackColor = Color.LightCoral;
             }
