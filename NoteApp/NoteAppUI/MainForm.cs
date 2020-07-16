@@ -5,10 +5,6 @@ using NoteApp;
 
 namespace NoteAppUI
 {
-    //TODO: иконки для кнопок слишком бледные, ощущение что они отключены
-    //TODO: запускаю программу, создаю три заметки: две категории Other, одну - Home. Выбираю для отображения категорию Other, редактирую одну из заметок, меняю в ней категорию. Закрываю второе окно - в списке заметок показываются все заметки, а не выбранной категории
-    //TODO: при растягивании окна контролы почему-то начинают отъезжать от главного меню. Исправить верстку
-    //TODO: где билд ивенты?
     public partial class MainForm : Form
     {
         /// <summary>
@@ -17,9 +13,9 @@ namespace NoteAppUI
         private Project _project;
 
         /// <summary>
-        /// Список заметок, сортированный по дате изменения //TODO: сортированный для чего? Надо указывать назначение объекта, а то, что он сортированный - это вторично
+        /// Список заметок, сортированный по дате изменения
         /// </summary>
-        private List<Note> sortedNotes; //TODO: лист чего? Для коллекций тип коллекции не указывается, указывается имя сущности в множественном числе
+        private List<Note> sortedNotes;
 
         public MainForm()
         {
@@ -44,7 +40,7 @@ namespace NoteAppUI
         /// Метод, заполняющий выпадающий список категорий
         /// </summary>
         private void FillCategoryComboBox()
-        { //TODO: AddRange?
+        {
             foreach (var category in Enum.GetValues(typeof(NoteCategory)))
             {
                 CategoryComboBox.Items.Add(category);

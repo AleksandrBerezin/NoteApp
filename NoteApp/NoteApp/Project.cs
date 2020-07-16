@@ -35,7 +35,7 @@ namespace NoteApp
         /// Метод для сортировки списка заметок по дате изменения (по убыванию)
         /// </summary>
         /// <returns></returns>
-        public List<Note> LastChangeTimeSort() //TODO: отразить в названии, что сортировка идет по дате изменения. Лучшее название метода то, которое не требует чтения комментариев
+        public List<Note> LastChangeTimeSort()
         {
             var orderedList = 
                 Notes.OrderByDescending(note => note.LastChangeTime);
@@ -48,7 +48,7 @@ namespace NoteApp
         /// </summary>
         /// <param name="category"></param>
         /// <returns></returns>
-        public List<Note> LastChangeTimeSortWithCategory(NoteCategory category) //TODO: не просто сортирует, но еще и фильтрует по заданной категории. Отразить в названии или разделить на два отдельно используемых метода
+        public List<Note> LastChangeTimeSortWithCategory(NoteCategory category)
         {
             return Notes.OrderByDescending(note =>
                 note.LastChangeTime).Where(note => note.Category == category).ToList();

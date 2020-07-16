@@ -31,7 +31,6 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-;TODO: неправильно! Если компиляция будет под другой конфигурацией, то установщик не соберется. Сделать правильную работу с путями
 Source: "Release\NoteAppUI.exe" ; DestDir: "{app}"; Flags: ignoreversion
 Source: "Release\NoteApp.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "Release\Newtonsoft.Json.dll"; DestDir: "{app}"; Flags: ignoreversion

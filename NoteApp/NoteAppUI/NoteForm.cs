@@ -6,8 +6,6 @@ using NoteApp;
 
 namespace NoteAppUI
 {
-    //TODO: кнопка Cancel смещена относительно правого края - не выровнена относительно текстовых полей выше
-    //TODO: просто NoteForm. Когда я в комментарии писал "редактируемый_объект" + Form, слово Edit не подразумевалось в названии
     public partial class NoteForm : Form
     {
         /// <summary>
@@ -46,7 +44,7 @@ namespace NoteAppUI
         /// Метод, заполняющий выпадающий список категорий
         /// </summary>
         private void FillCategoryComboBox()
-        { //TODO: AddRange?
+        {
             foreach (var category in Enum.GetValues(typeof(NoteCategory)))
             {
                 CategoryComboBox.Items.Add(category);
@@ -78,7 +76,7 @@ namespace NoteAppUI
 
                 ModifiedDatePicker.Text = _note.LastChangeTime.ToShortDateString();
             }
-            catch (JsonSerializationException exception) //TODO: ловить исключения базового типа плохо. Здесь и в других местах конкретизируй тип ожидаемого исключения
+            catch (JsonSerializationException exception)
             {
                 CategoryComboBox.BackColor = Color.LightCoral;
             }

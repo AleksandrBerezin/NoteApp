@@ -79,7 +79,7 @@ namespace NoteApp.UnitTests
         }
 
         [Test(Description = "Позитивный тест сортировки списка по дате изменения")]
-        public void TestLashChangeTimeSort_CorrectValue() //TODO: переименовать тесты после переименования методов сортировки
+        public void TestLashChangeTimeSort_CorrectValue() 
         {
             var project = new Project();
             var expectedList = new List<Note>()
