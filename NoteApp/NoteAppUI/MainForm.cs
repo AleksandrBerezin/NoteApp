@@ -133,7 +133,7 @@ namespace NoteAppUI
             _project.Notes.RemoveAt(realIndexInProject);
             _project.Notes.Insert(realIndexInProject, updatedNote);
 
-            if (CategoryComboBox.SelectedItem != null)
+            if (CategoryComboBox.SelectedItem != null && CategoryComboBox.SelectedItem != "All")
             {
                 sortedNotes = _project.LastChangeTimeSortWithCategory(
                     (NoteCategory) CategoryComboBox.SelectedItem);
@@ -145,7 +145,7 @@ namespace NoteAppUI
 
             FillNoteListBox();
 
-            if (CategoryComboBox.SelectedItem != null)
+            if (CategoryComboBox.SelectedItem != null && CategoryComboBox.SelectedItem != "All")
             {
                 if (updatedNote.Category.Equals((NoteCategory)CategoryComboBox.SelectedItem))
                 {
