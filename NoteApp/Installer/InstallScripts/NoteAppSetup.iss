@@ -18,6 +18,7 @@ DefaultDirName={autopf}\{#MyAppName}
 DisableProgramGroupPage=yes
 ; Uncomment the following line to run in non administrative install mode (install for current user only.)
 ; PrivilegesRequired=lowest
+OutputDir=Installers
 OutputBaseFilename=setup
 Compression=lzma
 SolidCompression=yes
@@ -31,9 +32,9 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 
 [Files]
 ;TODO: неправильно! Если компиляция будет под другой конфигурацией, то установщик не соберется. Сделать правильную работу с путями
-Source: "NoteAppUI.exe" ; DestDir: "{app}"; Flags: ignoreversion
-Source: "NoteApp.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "Newtonsoft.Json.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Release\NoteAppUI.exe" ; DestDir: "{app}"; Flags: ignoreversion
+Source: "Release\NoteApp.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Release\Newtonsoft.Json.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "NoteIcon.ico"; DestDir: "{app}"; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 

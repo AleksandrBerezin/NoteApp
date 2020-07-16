@@ -123,9 +123,10 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>del $(SolutionDir)Installer\InstallScripts\*exe
-del $(SolutionDir)Installer\InstallScripts\*dll
-xcopy $(ProjectDir)$(OutDir)*.exe $(SolutionDir)Installer\InstallScripts
-xcopy $(ProjectDir)$(OutDir)*.dll $(SolutionDir)Installer\InstallScripts</PostBuildEvent>
+    <PostBuildEvent>rmdir /s /q $(SolutionDir)Installer\InstallScripts\Release
+md $(SolutionDir)Installer\InstallScripts\Release
+md $(SolutionDir)Installer\InstallScripts\Installers
+xcopy $(ProjectDir)$(OutDir)*.exe $(SolutionDir)Installer\InstallScripts\Release
+xcopy $(ProjectDir)$(OutDir)*.dll $(SolutionDir)Installer\InstallScripts\Release</PostBuildEvent>
   </PropertyGroup>
 </Project>
