@@ -114,10 +114,10 @@
             this.GithubLinkLabel.AutoSize = true;
             this.GithubLinkLabel.Location = new System.Drawing.Point(137, 146);
             this.GithubLinkLabel.Name = "GithubLinkLabel";
-            this.GithubLinkLabel.Size = new System.Drawing.Size(175, 17);
+            this.GithubLinkLabel.Size = new System.Drawing.Size(171, 17);
             this.GithubLinkLabel.TabIndex = 9;
             this.GithubLinkLabel.TabStop = true;
-            this.GithubLinkLabel.Text = " aleksandr402@gmail.com";
+            this.GithubLinkLabel.Text = "aleksandr402@gmail.com";
             // 
             // AboutForm
             // 

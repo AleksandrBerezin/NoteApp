@@ -136,25 +136,25 @@
             // tableLayoutPanel3
             // 
             this.tableLayoutPanel3.ColumnCount = 3;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 131F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 134F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel3.Controls.Add(this.textBox5, 1, 0);
             this.tableLayoutPanel3.Controls.Add(this.CreationDatePicker, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.ModifiedDatePicker, 2, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(72, 68);
-            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(69, 68);
+            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(0, 2, 3, 2);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(658, 29);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(661, 29);
             this.tableLayoutPanel3.TabIndex = 5;
             // 
             // textBox5
             // 
             this.textBox5.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox5.Location = new System.Drawing.Point(144, 4);
+            this.textBox5.Location = new System.Drawing.Point(147, 4);
             this.textBox5.Margin = new System.Windows.Forms.Padding(13, 4, 3, 2);
             this.textBox5.Name = "textBox5";
             this.textBox5.ReadOnly = true;
@@ -166,8 +166,8 @@
             // 
             this.CreationDatePicker.Enabled = false;
             this.CreationDatePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.CreationDatePicker.Location = new System.Drawing.Point(0, 0);
-            this.CreationDatePicker.Margin = new System.Windows.Forms.Padding(0);
+            this.CreationDatePicker.Location = new System.Drawing.Point(3, 0);
+            this.CreationDatePicker.Margin = new System.Windows.Forms.Padding(3, 0, 0, 0);
             this.CreationDatePicker.Name = "CreationDatePicker";
             this.CreationDatePicker.Size = new System.Drawing.Size(125, 22);
             this.CreationDatePicker.TabIndex = 0;
@@ -176,7 +176,7 @@
             // 
             this.ModifiedDatePicker.Enabled = false;
             this.ModifiedDatePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.ModifiedDatePicker.Location = new System.Drawing.Point(211, 0);
+            this.ModifiedDatePicker.Location = new System.Drawing.Point(214, 0);
             this.ModifiedDatePicker.Margin = new System.Windows.Forms.Padding(0);
             this.ModifiedDatePicker.Name = "ModifiedDatePicker";
             this.ModifiedDatePicker.Size = new System.Drawing.Size(120, 22);

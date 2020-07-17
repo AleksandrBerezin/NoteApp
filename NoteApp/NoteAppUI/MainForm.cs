@@ -15,7 +15,7 @@ namespace NoteAppUI
         /// <summary>
         /// Список заметок, сортированный по дате изменения
         /// </summary>
-        private List<Note> sortedNotes;
+        private List<Note> currentDisplayedNotes;
 
         public MainForm()
         {
@@ -24,8 +24,8 @@ namespace NoteAppUI
             InitializeComponent();
             FillCategoryComboBox();
 
-            sortedNotes = _project.LastChangeTimeSort();
-            _project.Notes = sortedNotes;
+            currentDisplayedNotes = _project.LastChangeTimeSort();
+            _project.Notes = currentDisplayedNotes;
 
             FillNoteListBox();
 
@@ -55,7 +55,7 @@ namespace NoteAppUI
         {
             NotesListBox.Items.Clear();
 
-            foreach (var note in sortedNotes)
+            foreach (var note in currentDisplayedNotes)
             {
                 NotesListBox.Items.Add(note.Name);
             }
@@ -69,16 +69,16 @@ namespace NoteAppUI
                 return;
             }
 
-            var realIndexInProject = _project.Notes.IndexOf(sortedNotes[selectedIndex]);
+            var realIndexInProject = _project.Notes.IndexOf(currentDisplayedNotes[selectedIndex]);
             _project.CurrentNote = _project.Notes[realIndexInProject];
 
-            NoteTitleTextBox.Text = sortedNotes[selectedIndex].Name;
-            CategoryTextBox.Text = sortedNotes[selectedIndex].Category.ToString();
+            NoteTitleTextBox.Text = currentDisplayedNotes[selectedIndex].Name;
+            CategoryTextBox.Text = currentDisplayedNotes[selectedIndex].Category.ToString();
             CreatedDatePicker.Text =
-                sortedNotes[selectedIndex].CreationTime.ToShortDateString();
+                currentDisplayedNotes[selectedIndex].CreationTime.ToShortDateString();
             ModifiedDatePicker.Text =
-                sortedNotes[selectedIndex].LastChangeTime.ToShortDateString();
-            NoteContentTextBox.Text = sortedNotes[selectedIndex].Text;
+                currentDisplayedNotes[selectedIndex].LastChangeTime.ToShortDateString();
+            NoteContentTextBox.Text = currentDisplayedNotes[selectedIndex].Text;
         }
 
         private void AddNoteButton_Click(object sender, EventArgs e)
@@ -94,14 +94,7 @@ namespace NoteAppUI
             var newNote = inner.Note;
             _project.Notes.Add(newNote);
 
-            sortedNotes = _project.LastChangeTimeSort();
-            _project.Notes = sortedNotes;
-
-            FillNoteListBox();
-
-            var currentNoteIndex = _project.Notes.IndexOf(newNote);
-            NotesListBox.SelectedItem = NotesListBox.Items[currentNoteIndex];
-            CategoryComboBox.Text = "";
+            FillNotesListBoxAfterEdit(newNote);
 
             ProjectManager.SaveToFile(_project, ProjectManager.DefaultPath);
         }
@@ -114,7 +107,7 @@ namespace NoteAppUI
             }
 
             var selectedIndex = NotesListBox.SelectedIndex;
-            var selectedNote = sortedNotes[selectedIndex];
+            var selectedNote = currentDisplayedNotes[selectedIndex];
             var realIndexInProject = _project.Notes.IndexOf(selectedNote);
 
             var inner = new NoteForm();
@@ -129,23 +122,34 @@ namespace NoteAppUI
             _project.Notes.RemoveAt(realIndexInProject);
             _project.Notes.Insert(realIndexInProject, updatedNote);
 
+            FillNotesListBoxAfterEdit(updatedNote);
+
+            ProjectManager.SaveToFile(_project, ProjectManager.DefaultPath);
+        }
+
+        /// <summary>
+        /// Метод для заполнения списка заметок после и выбора текущей заметки
+        /// после добавления, редактирования или удаления заметки
+        /// </summary>
+        private void FillNotesListBoxAfterEdit(Note note)
+        {
             if (CategoryComboBox.SelectedItem != null && CategoryComboBox.SelectedItem != "All")
             {
-                sortedNotes = _project.LastChangeTimeSortWithCategory(
-                    (NoteCategory) CategoryComboBox.SelectedItem);
+                currentDisplayedNotes = _project.LastChangeTimeSortWithCategory(
+                    (NoteCategory)CategoryComboBox.SelectedItem);
             }
             else
             {
-                sortedNotes = _project.LastChangeTimeSort();
+                currentDisplayedNotes = _project.LastChangeTimeSort();
             }
 
             FillNoteListBox();
 
             if (CategoryComboBox.SelectedItem != null && CategoryComboBox.SelectedItem != "All")
             {
-                if (updatedNote.Category.Equals((NoteCategory)CategoryComboBox.SelectedItem))
+                if (note.Category.Equals((NoteCategory)CategoryComboBox.SelectedItem))
                 {
-                    var currentNoteIndex = sortedNotes.IndexOf(updatedNote);
+                    var currentNoteIndex = currentDisplayedNotes.IndexOf(note);
                     NotesListBox.SelectedItem = NotesListBox.Items[currentNoteIndex];
                 }
                 else
@@ -164,8 +168,6 @@ namespace NoteAppUI
             {
                 NotesListBox.SelectedItem = NotesListBox.Items[0];
             }
-
-            ProjectManager.SaveToFile(_project, ProjectManager.DefaultPath);
         }
 
         private void AboutButton_Click(object sender, EventArgs e)
@@ -196,17 +198,33 @@ namespace NoteAppUI
             if (result == DialogResult.OK)
             {
                 var selectedIndex = NotesListBox.SelectedIndex;
-                var selectedNote = sortedNotes[selectedIndex];
+                var selectedNote = currentDisplayedNotes[selectedIndex];
                 var realIndexInProject = _project.Notes.IndexOf(selectedNote);
 
+                var copyNote = (Note)selectedNote.Clone();
+
                 _project.Notes.RemoveAt(realIndexInProject);
-                sortedNotes = _project.LastChangeTimeSort();
-                _project.Notes = sortedNotes;
+                
+                if (CategoryComboBox.SelectedItem != null && CategoryComboBox.SelectedItem != "All")
+                {
+                    currentDisplayedNotes = _project.LastChangeTimeSortWithCategory(
+                        (NoteCategory)CategoryComboBox.SelectedItem);
+                }
+                else
+                {
+                    currentDisplayedNotes = _project.LastChangeTimeSort();
+                }
 
                 FillNoteListBox();
-                _project.CurrentNote = null;
-                ClearAllFields();
-                CategoryComboBox.Text = "";
+
+                if (NotesListBox.Items.Count > 0)
+                {
+                    NotesListBox.SelectedItem = NotesListBox.Items[0];
+                }
+                else
+                {
+                    ClearAllFields();
+                }
 
                 ProjectManager.SaveToFile(_project, ProjectManager.DefaultPath);
             }
@@ -222,17 +240,17 @@ namespace NoteAppUI
         {
             if (CategoryComboBox.SelectedItem == "All")
             {
-                sortedNotes = _project.Notes;
+                currentDisplayedNotes = _project.LastChangeTimeSort();
             }
             else
             {
-                sortedNotes = _project.LastChangeTimeSortWithCategory(
+                currentDisplayedNotes = _project.LastChangeTimeSortWithCategory(
                     (NoteCategory)CategoryComboBox.SelectedIndex);
             }
 
             NotesListBox.Items.Clear();
             
-            foreach (var note in sortedNotes)
+            foreach (var note in currentDisplayedNotes)
             {
                 NotesListBox.Items.Add(note.Name);
             }
