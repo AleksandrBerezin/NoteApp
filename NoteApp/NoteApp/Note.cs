@@ -80,47 +80,14 @@ namespace NoteApp
         }
 
         /// <summary>
-        /// Время создания заметки.
-        /// </summary>
-        private DateTime _creationTime;
-
-        /// <summary>
         /// Возвращает и задает время создания заметки
         /// </summary>
-        public DateTime CreationTime
-        {
-            get
-            {
-                return _creationTime;
-            }
+        public DateTime CreationTime { get; set; }
 
-            private set
-            {
-                _creationTime = value;
-            }
-        }
-
-        /// <summary>
-        /// Время последнего изменения заметки.
-        /// </summary>
-        private DateTime _lastChangeTime;
-
-        
         /// <summary>
         /// Возвращает и задает время последнего изменения заметки
         /// </summary>
-        public DateTime LastChangeTime
-        {
-            get
-            {
-                return _lastChangeTime;
-            }
-
-            private set
-            {
-                _lastChangeTime = value;
-            }
-        }
+        public DateTime LastChangeTime { get; set; }
 
         /// <summary>
         /// Создает экземпляр <see cref="Note"/>

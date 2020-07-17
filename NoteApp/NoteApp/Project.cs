@@ -9,12 +9,7 @@ namespace NoteApp
     public class Project
     {
         /// <summary>
-        /// Список всех заметок
-        /// </summary>
-        private List<Note> _notes;
-        
-        /// <summary>
-        /// Возвращает и задает список заметок
+        /// Возвращает и задает список всех заметок
         /// </summary>
         public List<Note> Notes { get; set; }
 

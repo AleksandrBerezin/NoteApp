@@ -15,7 +15,7 @@ namespace NoteAppUI
         /// <summary>
         /// Список заметок, сортированный по дате изменения
         /// </summary>
-        private List<Note> currentDisplayedNotes;
+        private List<Note> _currentDisplayedNotes;
 
         public MainForm()
         {
@@ -24,8 +24,8 @@ namespace NoteAppUI
             InitializeComponent();
             FillCategoryComboBox();
 
-            currentDisplayedNotes = _project.LastChangeTimeSort();
-            _project.Notes = currentDisplayedNotes;
+            _currentDisplayedNotes = _project.LastChangeTimeSort();
+            _project.Notes = _currentDisplayedNotes;
 
             FillNoteListBox();
 
@@ -55,7 +55,7 @@ namespace NoteAppUI
         {
             NotesListBox.Items.Clear();
 
-            foreach (var note in currentDisplayedNotes)
+            foreach (var note in _currentDisplayedNotes)
             {
                 NotesListBox.Items.Add(note.Name);
             }
@@ -69,16 +69,16 @@ namespace NoteAppUI
                 return;
             }
 
-            var realIndexInProject = _project.Notes.IndexOf(currentDisplayedNotes[selectedIndex]);
+            var realIndexInProject = _project.Notes.IndexOf(_currentDisplayedNotes[selectedIndex]);
             _project.CurrentNote = _project.Notes[realIndexInProject];
 
-            NoteTitleTextBox.Text = currentDisplayedNotes[selectedIndex].Name;
-            CategoryTextBox.Text = currentDisplayedNotes[selectedIndex].Category.ToString();
+            NoteTitleTextBox.Text = _currentDisplayedNotes[selectedIndex].Name;
+            CategoryTextBox.Text = _currentDisplayedNotes[selectedIndex].Category.ToString();
             CreatedDatePicker.Text =
-                currentDisplayedNotes[selectedIndex].CreationTime.ToShortDateString();
+                _currentDisplayedNotes[selectedIndex].CreationTime.ToShortDateString();
             ModifiedDatePicker.Text =
-                currentDisplayedNotes[selectedIndex].LastChangeTime.ToShortDateString();
-            NoteContentTextBox.Text = currentDisplayedNotes[selectedIndex].Text;
+                _currentDisplayedNotes[selectedIndex].LastChangeTime.ToShortDateString();
+            NoteContentTextBox.Text = _currentDisplayedNotes[selectedIndex].Text;
         }
 
         private void AddNoteButton_Click(object sender, EventArgs e)
@@ -107,7 +107,7 @@ namespace NoteAppUI
             }
 
             var selectedIndex = NotesListBox.SelectedIndex;
-            var selectedNote = currentDisplayedNotes[selectedIndex];
+            var selectedNote = _currentDisplayedNotes[selectedIndex];
             var realIndexInProject = _project.Notes.IndexOf(selectedNote);
 
             var inner = new NoteForm();
@@ -135,12 +135,12 @@ namespace NoteAppUI
         {
             if (CategoryComboBox.SelectedItem != null && CategoryComboBox.SelectedItem != "All")
             {
-                currentDisplayedNotes = _project.LastChangeTimeSortWithCategory(
+                _currentDisplayedNotes = _project.LastChangeTimeSortWithCategory(
                     (NoteCategory)CategoryComboBox.SelectedItem);
             }
             else
             {
-                currentDisplayedNotes = _project.LastChangeTimeSort();
+                _currentDisplayedNotes = _project.LastChangeTimeSort();
             }
 
             FillNoteListBox();
@@ -149,7 +149,7 @@ namespace NoteAppUI
             {
                 if (note.Category.Equals((NoteCategory)CategoryComboBox.SelectedItem))
                 {
-                    var currentNoteIndex = currentDisplayedNotes.IndexOf(note);
+                    var currentNoteIndex = _currentDisplayedNotes.IndexOf(note);
                     NotesListBox.SelectedItem = NotesListBox.Items[currentNoteIndex];
                 }
                 else
@@ -198,7 +198,7 @@ namespace NoteAppUI
             if (result == DialogResult.OK)
             {
                 var selectedIndex = NotesListBox.SelectedIndex;
-                var selectedNote = currentDisplayedNotes[selectedIndex];
+                var selectedNote = _currentDisplayedNotes[selectedIndex];
                 var realIndexInProject = _project.Notes.IndexOf(selectedNote);
 
                 var copyNote = (Note)selectedNote.Clone();
@@ -207,12 +207,12 @@ namespace NoteAppUI
                 
                 if (CategoryComboBox.SelectedItem != null && CategoryComboBox.SelectedItem != "All")
                 {
-                    currentDisplayedNotes = _project.LastChangeTimeSortWithCategory(
+                    _currentDisplayedNotes = _project.LastChangeTimeSortWithCategory(
                         (NoteCategory)CategoryComboBox.SelectedItem);
                 }
                 else
                 {
-                    currentDisplayedNotes = _project.LastChangeTimeSort();
+                    _currentDisplayedNotes = _project.LastChangeTimeSort();
                 }
 
                 FillNoteListBox();
@@ -240,17 +240,17 @@ namespace NoteAppUI
         {
             if (CategoryComboBox.SelectedItem == "All")
             {
-                currentDisplayedNotes = _project.LastChangeTimeSort();
+                _currentDisplayedNotes = _project.LastChangeTimeSort();
             }
             else
             {
-                currentDisplayedNotes = _project.LastChangeTimeSortWithCategory(
+                _currentDisplayedNotes = _project.LastChangeTimeSortWithCategory(
                     (NoteCategory)CategoryComboBox.SelectedIndex);
             }
 
             NotesListBox.Items.Clear();
             
-            foreach (var note in currentDisplayedNotes)
+            foreach (var note in _currentDisplayedNotes)
             {
                 NotesListBox.Items.Add(note.Name);
             }
