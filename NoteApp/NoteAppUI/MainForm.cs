@@ -160,6 +160,7 @@ namespace NoteAppUI
                     }
                     else
                     {
+                        _project.CurrentNote = null;
                         ClearAllFields();
                     }
                 }
@@ -223,6 +224,7 @@ namespace NoteAppUI
                 }
                 else
                 {
+                    _project.CurrentNote = null;
                     ClearAllFields();
                 }
 
